@@ -5,6 +5,6 @@ window.storyFormat({
 	"name": "reach",
 	"proofing": false,
 	"license": "ISC",
-	"url": "https://samesimialr.com",
+	"url": "https://samesimilar.com",
 	"source": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>{{STORY_NAME}}</title>\n\n</head><body>{{STORY_DATA}}</body></html>"
 });
