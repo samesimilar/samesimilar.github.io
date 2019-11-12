@@ -5,7 +5,7 @@ window.storyFormat({
 	"name": "reach",
 	"version": "0.0.1",
 	"proofing": false,
-	"license": "ISC",
+	"license": "MIT",
 	"url": "https://samesimilar.com",
 	"source": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>{{STORY_NAME}}</title>\n\n</head><body>{{STORY_DATA}}</body></html>"
 });
