@@ -1,4 +1,4 @@
-console.log("REACH-0.0.7,2");
+console.log("REACH-0.0.7,3");
 function removeAllChildren(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
