@@ -1,4 +1,4 @@
-console.log("REACH-0.0.7");
+console.log("REACH-0.0.7,2");
 function removeAllChildren(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
@@ -51,13 +51,18 @@ function loadLocalStory() {
 function getPassageSky(background) {
   var skyElement = document.createElement("a-sky");
   skyElement.setAttribute("src", background.src);
-  if (background.options.distance !== undefined) {
-    skyElement.setAttribute("radius", background.options.distance);
-    skyElement.setAttribute("transparent", "true");
-  } else {
-    skyElement.setAttribute("radius", 5000);
-	skyElement.setAttribute("transparent", "true");
+  var transparent = "true";
+  var radius = 5000;
+  if (background.options.transparent === false) {
+	  transparent = "false";
   }
+  if (background.options.distance !== undefined) {
+	  radius = background.options.distance;
+  }
+  
+  skyElement.setAttribute("transparent", transparent);
+  skyElement.setAttribute("radius", radius);
+
   return skyElement;
 }
 
@@ -270,7 +275,7 @@ function loadPassage(passage) {
 	  var textBlock = getTextInPassage(passage);	  
 	  var textElement = createPassageText(textBlock, 0);
 	  scene.appendChild(textElement);
-  	  var defaultSky = getPassageSky({src:"#reach-default-360", options:{}});
+  	  var defaultSky = getPassageSky({src:"#reach-default-360", options:{"transparent":"false"}});
 	  scene.appendChild(defaultSky);
   }
 
