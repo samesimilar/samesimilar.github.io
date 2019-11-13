@@ -6,6 +6,6 @@ window.storyFormat({
 	"version": "0.0.7",
 	"proofing": false,
 	"license": "MIT",
-	"url": "https://samesimilar.com/reach/6",
-	"source": "<!DOCTYPE html>\n<html>\n  <head>\n    <script src=\"https://aframe.io/releases/0.9.2/aframe.min.js\"></script>\n    <script src=\"https://samesimilar.com/reach/6/reach.js\"></script>\n    <title>{{STORY_NAME}}</title>\n  </head>\n  <body>\n    {{STORY_DATA}}\n    <a-scene>\n      <a-assets><img src=\"https://samesimilar.com/reach/6/reach-default-360.png\" id=\"reach-default-360\"/ crossorigin=\"anonymous\"> </a-assets>\n      <a-entity id=\"container\"> </a-entity>\n      <a-entity laser-controls=\"hand: right\"></a-entity>\n      <a-camera id=\"main-camera\" wasd-controls=\"enabled: false\">\n        <a-cursor objects=\".clickable\"></a-cursor>\n      </a-camera>\n    </a-scene>\n\n    <script>\n      loadLocalStory();\n    </script>\n  </body>\n</html>\n\n"
+	"url": "https://samesimilar.com/reach/7",
+	"source": "<!DOCTYPE html>\n<html>\n  <head>\n    <script src=\"https://aframe.io/releases/0.9.2/aframe.min.js\"></script>\n    <script src=\"https://samesimilar.com/reach/7/reach.js\"></script>\n    <title>{{STORY_NAME}}</title>\n  </head>\n  <body>\n    {{STORY_DATA}}\n    <a-scene>\n      <a-assets><img src=\"https://samesimilar.com/reach/7/reach-default-360.png\" id=\"reach-default-360\"/ crossorigin=\"anonymous\"> </a-assets>\n      <a-entity id=\"container\"> </a-entity>\n      <a-entity laser-controls=\"hand: right\"></a-entity>\n      <a-camera id=\"main-camera\" wasd-controls=\"enabled: false\">\n        <a-cursor objects=\".clickable\"></a-cursor>\n      </a-camera>\n    </a-scene>\n\n    <script>\n      loadLocalStory();\n    </script>\n  </body>\n</html>\n\n"
 });
