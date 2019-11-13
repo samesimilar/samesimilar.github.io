@@ -1,4 +1,4 @@
-console.log("REACH-0.0.7,3");
+console.log("REACH-0.0.7,4");
 function removeAllChildren(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
@@ -275,7 +275,7 @@ function loadPassage(passage) {
 	  var textBlock = getTextInPassage(passage);	  
 	  var textElement = createPassageText(textBlock, 0);
 	  scene.appendChild(textElement);
-  	  var defaultSky = getPassageSky({src:"#reach-default-360", options:{"transparent":"false"}});
+  	  var defaultSky = getPassageSky({src:"#reach-default-360", options:{"transparent":false}});
 	  scene.appendChild(defaultSky);
   }
 
