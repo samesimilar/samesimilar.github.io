@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@e850be07c3a96fdfbafbd57c63cd2679fea0fcb1/dist/aframe-master.min.js"></script>
+<script src="https://unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script>   <script src="http://localhost:8000/reach.js" type="module"></script>
+    <title>RotatingBackground</title>
+  </head>
+  <body>
+    <tw-storydata name="RotatingBackground" startnode="1" creator="Twine" creator-version="2.3.5" ifid="D3AE419B-F68C-4A2E-8FB3-39F186F32229" zoom="1" format="reach" format-version="1.0.51" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Start" tags="" position="412,189" size="100,100">
+&lt;% // background 0 %&gt;
+((https://samesimilar.com/reach/demo-media/soft360.png))
+
+&lt;% // background 1 %&gt;
+&lt;% // this image is mostly transparent and is overlaid on backgorund 0 %&gt;
+{&quot;distance&quot;:3000}((https://samesimilar.com/reach/demo-media/shapes.png))
+
+&lt;% // load the code that rotates background image 1%&gt;
+{&quot;skyIndex&quot;: 1, &quot;degreesPerSecond&quot;: 5}[[%RotateSky%]]
+
+</tw-passagedata><tw-passagedata pid="2" name="%RotateSky%" tags="" position="532,338" size="100,100">p.skies(params.skyIndex).onTick( (sky, time, timeDelta) =&gt; {
+	var currentDirection = sky.getOption(&quot;direction&quot;);
+	currentDirection = currentDirection + (timeDelta * (params.degreesPerSecond / 360 * 12) / 1000);
+	sky.setOption(&quot;direction&quot;, currentDirection);
+});</tw-passagedata></tw-storydata>
+    <a-scene device-motion-permission>
+      <a-assets><img src="http://localhost:8000/reach-default-360.png" id="reach-default-360"/ crossorigin="anonymous"> </a-assets>
+<a-entity id="container"> </a-entity>
+      <a-entity laser-controls="hand: right"></a-entity>
+      <a-camera id="main-camera" wasd-controls="enabled: false">
+</a-camera>
+    </a-scene>
+</body>
+</html>
+
