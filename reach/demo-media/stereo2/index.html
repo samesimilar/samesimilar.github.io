@@ -11,6 +11,9 @@
       <a-assets>
         <img id="left" src="textures/L.png">
         <img id="right" src="textures/R.png">
+        <img id="sleft" src="shapes/L.png">
+        <img id="sright" src="shapes/R.png">
+		
       </a-assets>
 
 
@@ -20,6 +23,10 @@
       <!-- Sky sphere -->
       <a-sky id="sky1" src="#left" stereo="eye:left"></a-sky>
       <a-sky id="sky2" src="#right" stereo="eye:right"></a-sky>
+	  
+      <a-sky id="sky3" radius="3000" src="#sleft" stereo="eye:left"></a-sky>
+      <a-sky id="sky4" radius="3000" src="#sright" stereo="eye:right"></a-sky>
+	  
 
       <!-- or alternatively -->
 
