@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Running the Nord Modular Classic Editor on Raspberry Pi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body class="container" id="body">
+	<h1>Nord on RPi</h1>
+	<h2>Running the original Nord Modular G1 Editor (v3.03 Windows) on a Raspberry Pi 4/400</h2>
+	<h5>by Michael Spears, @samesimilar, October 2023, Toronto</h5>
+	<p>For quite a while I’ve been running the <a href='https://en.wikipedia.org/wiki/Nord_Modular'>Nord Modular</a> editor on my MacBook. That is: the original Windows version of Clavia’s editor, running using <a href='https://www.codeweavers.com/crossover'>Crossover For Mac</a> on macOS 14 (Sonoma), on an Apple Silicon (M1) MacBook Air has been working well as my setup for patching my Nord Modular. Recently I happened upon the <a href='https://github.com/ptitSeb/box86'>Box86</a> project and discovered that it could offer a similar environment on Raspberry Pi to the Rosetta/Crossover environment that I have working on my MacBook. So I was curious to try running the Nord Editor on a Raspberry Pi 400.</p>
+	<p>I discovered that it worked quite well! So I wanted to share the steps for setting this up, in case it is useful to anyone else.</p>
+	<p>One important caveat right now is that if WINE will not start up properly if a display is not plugged into the HDMI-out port of the Raspberry Pi. This is unfortunate since the RPi OS includes VNC Server (remote desktop).  If I learn how to make this work in “headless” mode, then I will update this post. For now, VNC with WINE and the Nord Editor <em>does</em> work, but you need to always have a display plugged into the RPi anyway, reducing the usefulness of this solution.</p>
+	<p><em>Feedback</em></p>
+	<p>My website doesn’t host comments, so I invite you to post feedback or questions using the <em>Issues</em> tab at this <a href='https://github.com/samesimilar/samesimilar.github.io/issues'>site’s repository at Github</a>.</p>
+	<p><img class='img-fluid' src='img/nordonpi_nordeditor.png' alt='The nord modular editor running on Raspberry Pi' /></p>
+	<h2>Hardware</h2>
+	<p>What you’ll need is:</p>
+	<ul>
+		<li>A Raspberry Pi</li>
+	</ul>
+	<p>I’m using a <a href='https://www.raspberrypi.com/products/raspberry-pi-400/'>Raspberry Pi 400</a>, which is a convenient format for a beginner in this space. There is a kit available that includes an SD card, power supply, a mouse and even a printed manual.</p>
+	<p>I imagine a regular <a href='https://www.raspberrypi.com/products/raspberry-pi-4-model-b/'>Raspberry Pi 4</a> should also work all the same, but I haven’t tested it. I don’t know what the minimum requirements are.</p>
+	<p>The setup I am describing has been tested on <em>Raspberry Pi OS Bullseye</em>. The OS image for RPi was called <em>Raspberry Pi OS (Legacy) with desktop and recommended software</em>. It’s the one that came installed on the SD card that came with the RPi 400 kit. It’s a 32-bit operating system.</p>
+	<ul>
+		<li>A USB - MIDI Interface</li>
+	</ul>
+	<p>Generally you will need a USB MIDI interface that doesn’t require special drivers (i.e. it should be “USB class compliant”). That is to make it easy for the RPi OS to recognize it. I have tested an M-Audio UNO USB-MIDI cable, and my MOTU M4 audio interface (with MIDI ports), and both have been functional for this purpose.</p>
+	<h2>TLDR; What you need to do</h2>
+	<p>Here is a summary of the procedure in case you don’t need the full description. The general idea is first to install <a href='https://github.com/Botspot/pi-apps'>Pi-Apps</a> on your RPi, which offers “one-click” installers for Box86 and WINE. Then you can download or copy the Nord Modular Editor for Windows onto your Pi and run it with the <code>wine</code> command.</p>
+	<ol>
+		<li>First install Pi-Apps: <a href='https://github.com/Botspot/pi-apps'>https://github.com/Botspot/pi-apps</a>.</li>
+		<li>Open Pi-Apps and install Box86.</li>
+		<li>Also in Pi-Apps, install WINE (x86). The installer will take a long time, about an hour. Just let it run. <em>It takes for-freakin’-ever.</em> You may see some error messages in the terminal during the install but it seems to go ok.</li>
+		<li>Download the Nord Modular editor from the web: <a href='https://www.nordkeyboards.com/downloads/nord-modular'>https://www.nordkeyboards.com/downloads/nord-modular</a>. You want the Windows version called <em>Nord Modular Editor v3.03.zip Download for Windows</em></li>
+		<li>Extract the editor .exe file from the downloaded archive and put it somewhere convenient.</li>
+		<li>Connect your MIDI interface to the RPi USB.</li>
+		<li>You can now run the editor from the command line with the <code>wine</code> command, e.g. <code>wine "/path/to/Nord Modular Editor v3.03.exe"</code> with the path name to the executable. I recommend adding a menu item to the Raspberry Pi menu. See below for details. Note: On my RPi 400 it takes a couple minutes for the app to start up (it may seem like nothing is happening). It runs well and is perfectly snappy once it starts up.</li>
+		<li>You may also want to download the Windows Help File for the editor and also download an archive of modular patches to play with. More details below.</li>
+	</ol>
+	<p>When the editor starts up, you should see your MIDI interface listed in the Nord editor’s MIDI setup dialog box (click Setup -> MIDI…). Once that is enabled, and assuming your Nord Modular is connected, it should pop up immediately. The editor will have access to all the files on the Linux file system, so you should be able to easily open patches that you have downloaded.</p>
+	<p><em>Happy patching!</em></p>
+	<h3>Read on if you would like to see some more details about these steps and some screenshots…</h3>
+	<h2>Start up your new Raspberry Pi</h2>
+	<p>Connect your RPi to a monitor, with a keyboard and mouse (the Pi 400 conveniently has a keyboard built in), and power it up. The first time you set it up you will go through a process to select your language, locale, username, password, and connect to a WiFi network. I recommend installing the updates when it offers to, to get that out of the way. When it’s finished it will reboot to the RPi desktop. <em>Hint:</em> Choose a good password if you intend to enable SSH and VNC to use your RPi remotely.</p>
+	<p><img class='img-fluid' src='img/nordonpi_firstdesktop.png' alt='Initial desktop' /></p>
+	<p>On the top-left of the screen,  you’ll have icons for (reading from left to right):</p>
+	<ol>
+		<li>The RPi menu (like the Windows start menu)</li>
+		<li>Web Browser (Chromium)</li>
+		<li>File browser</li>
+		<li>Terminal</li>
+	</ol>
+	<h2>Install Pi-Apps</h2>
+	<p><em>Pi-Apps</em> is an installer app that lists about 200 apps for Raspberry Pi, making it easy to install a bunch of useful items each with one click. We are going to use it to install Box86 and WINE (x86). To get there, though, Pi-Apps needs to be installed using the Terminal.</p>
+	<ol>
+		<li>Click the Web Browser icon and browse to the Pi-Apps repository on Github: <a href='https://github.com/Botspot/pi-apps'>https://github.com/Botspot/pi-apps</a>.</li>
+		<li>Scroll down to see the Readme file for Pi-Apps. Look for where it says “Open a terminal and run the command”.</li>
+		<li>Click the Terminal icon on the top left of the RPi desktop to open a terminal window. Copy and paste the <em>entire</em> Pi-Apps installer command into the Terminal prompt and execute it.</li>
+	</ol>
+	<p>As of this writing you are looking for:
+		<code>wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash</code></p>
+	<ol>
+		<li>Give it a few minutes to install Pi-Apps.  When it’s done it will say “Installation Complete” in the terminal window. You can close the terminal window.</li>
+	</ol>
+	<p><img class='img-fluid' src='img/nordonpi_installingpiapps.png' alt='Installing pi-apps' /></p>
+	<h2>Start the Pi-Apps app and install Box86 and WINE (x86)</h2>
+	<p>You can find the Pi-Apps app on the RPi ‘start menu’ under <em>Accessories</em>.</p>
+	<ol>
+		<li>Start up Pi-Apps.</li>
+		<li>Click the <em>All Apps</em> option.</li>
+		<li>Scroll down the list and click <em>Box86</em>.</li>
+		<li>Click Install.</li>
+	</ol>
+	<p>A terminal will open and some scripts will run for a few minutes. Wait until it says it is finished before installing WINE.</p>
+	<ol>
+		<li>Once Box86 is installed, go back down the list of apps and click WINE (x86). Click <em>Install</em> for this one also.</li>
+	</ol>
+	<p>This will take about an hour to install. You may see some error messages and stuff pop up while it installs, but I just ignored them and I bet you can too.</p>
+	<p><img class='img-fluid' src='img/nordonpi_installingwine.png' alt='Installing WINE' /></p>
+	<p><img class='img-fluid' src='img/nordonpi_winewait.png' alt='Waiting for the install to finish' /></p>
+	<h2>Download the Nord Modular Editor</h2>
+	<p>Ok we are mostly done now! Head over to the Nord Keyboards website at 	<a href='https://www.nordkeyboards.com/downloads/nord-modular'>https://www.nordkeyboards.com/downloads/nord-modular</a> to download the editor Windows editor (<em>Nord Modular Editor v3.03.zip</em>) to your RPi. Double-click the downloaded .zip file to open the archiver utility, and extract the .exe into a convenient location. I put mine in a <code>nord</code>  subfolder of the <code>Music</code> folder.</p>
+	<p>Now we are ready to run the editor. Plug in your USB MIDI interface and run the .exe by passing its path to the <code>wine</code> command on the terminal.</p>
+	<p>e.g. for me I would put the following command:</p>
+	<p><code>wine "/home/samesimilar/Music/nord/Nord Modular Editor v3.03.exe"</code></p>
+	<p>Take care with upper- and lower-case and notice I put the path in quotes since the path/filename has spaces in it.</p>
+	<p>After a couple minutes of zen, the editor will finally start up, and you should be able to set it up as usual.</p>
+	<p><img class='img-fluid' src='img/nordonpi_startingup.png' alt='Starting the editor' /></p>
+	<p><strong>Here are a few more optional steps to improve the usability of your setup:</strong></p>
+	<h2>Download the Windows Help File</h2>
+	<p>At the same Nord Keyboards page you can download the Windows Help File for the editor app. If you just click to download it, the file type is not recognized as binary data and just loads on the Browser window as garbled text. To save the file:</p>
+	<ol>
+		<li>Right-click the link to the <em>Nord Modular v3.03 Helpfile</em> and select <em>Save link as…</em></li>
+		<li>Place the file in the same folder as the editor .exe file.</li>
+		<li>The file has a slightly incorrect name as downloaded. Rename the help file to <em>Nord Modular v3.03.HLP</em>. You can rename files in the RPi file browser app.</li>
+	</ol>
+	<h2>Download the Nord Modular patch archive</h2>
+	<p>Since you have the Web Browser open, why not head over to <a href='https://electro-music.com/nm_classic/'>electro-music.com</a> and download the entire Nord Modular Classic archive?</p>
+	<h2>Add a Nord Modular Editor item to the Raspberry Pi “start menu”</h2>
+	<ol>
+		<li>Click the Raspberry Pi start menu, go down to Preferences -> Main Menu Editor</li>
+		<li>On the left select the submenu where you want to place the Nord editor shortcut. I selected “Sound & Video”.</li>
+		<li>On the right, click “New Item”.</li>
+		<li>On the Launcher Properties dialog, type the Name you want to see on the menu, and the command to run.</li>
+	</ol>
+	<p>The command will be the same as the one we used to start wine on the terminal.</p>
+	<p>For me it was:</p>
+	<p><code>wine "/home/samesimilar/Music/nord/Nord Modular Editor v3.03.exe"</code></p>
+	<p>Click ‘ok’ to close the editor. You should now have a launcher item for the editor on your start menu.</p>
+	<h2>Other ideas and ToDos</h2>
+	<ul>
+		<li>Find a way to get the editor app to start up automatically when the RPi starts up</li>
+		<li>Find a way to get WINE and the editor to work on VNC when the RPi doesn’t have a screen attached</li>
+	</ul>
+	<h2>Conclusion</h2>
+	<p>Good luck! I hope this article is useful. Remember you can post feedback or questions using the <em>Issues</em> tab at my <a href='https://github.com/samesimilar/samesimilar.github.io/issues'>site’s repository at Github</a>.</p>
+
+</body>
+</html>
