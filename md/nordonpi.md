@@ -11,7 +11,7 @@ One important caveat right now is that if WINE will not start up properly if a d
 
 *Feedback*
 
-My website doesn't host comments, so I invite you to post feedback or questions using the *Issues* tab at this [site's repository at Github](https://github.com/samesimilar/samesimilar.github.io/issues).
+My website doesn't host comments, so I invite you to post feedback or questions using the *Issues* tab at this sites's [repository at Github](https://github.com/samesimilar/samesimilar.github.io/issues).
 
 ![The nord modular editor running on Raspberry Pi](img/nordonpi_nordeditor.png)
 
@@ -74,7 +74,7 @@ On the top-left of the screen,  you'll have icons for (reading from left to righ
 As of this writing you are looking for:
  `wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash`
 
-4. Give it a few minutes to install Pi-Apps.  When it's done it will say "Installation Complete" in the terminal window. You can close the terminal window.
+* Give it a few minutes to install Pi-Apps.  When it's done it will say "Installation Complete" in the terminal window. You can close the terminal window.
 
 ![Installing pi-apps](img/nordonpi_installingpiapps.png)
 
@@ -89,7 +89,7 @@ You can find the Pi-Apps app on the RPi 'start menu' under *Accessories*.
 
 A terminal will open and some scripts will run for a few minutes. Wait until it says it is finished before installing WINE.
 
-5. Once Box86 is installed, go back down the list of apps and click WINE (x86). Click *Install* for this one also. 
+* Once Box86 is installed, go back down the list of apps and click WINE (x86). Click *Install* for this one also. 
 
 This will take about an hour to install. You may see some error messages and stuff pop up while it installs, but I just ignored them and I bet you can too. 
 
@@ -103,19 +103,21 @@ Ok we are mostly done now! Head over to the Nord Keyboards website at 	[https://
 
 Now we are ready to run the editor. Plug in your USB MIDI interface and run the .exe by passing its path to the `wine` command on the terminal.
 
-e.g. for me I would put the following command:
+For example, I would put the following command:
 
 `wine "/home/samesimilar/Music/nord/Nord Modular Editor v3.03.exe"`
 
-Take care with upper- and lower-case and notice I put the path in quotes since the path/filename has spaces in it.
+Take care with upper- and lower-case, and notice I enclosed the full path in quotes since the path/filename has spaces in it.
 
-After a couple minutes of zen, the editor will finally start up, and you should be able to set it up as usual.
+After a couple minutes of zen, ("a few moments later" as is said on Spongebob) the editor will finally start up, and you should be able to set up the MIDI connection and start patching, as usual. 
+
+For further assistance with the editor and its communication with your wonderful Nord Modular synthesizer, I'll refer you to the classic [Nord Modular manual](https://www.nordkeyboards.com/sites/default/files/files/downloads/manuals/nord-modular/Nord%20Modular%20English%20User%20Manual%20v3.0%20Edition%203.0.pdf).
 
 ![Starting the editor](img/nordonpi_startingup.png)
 
-**Here are a few more optional steps to improve the usability of your setup:**
-
 ## Download the Windows Help File
+
+**This and the following steps are optional ideas to improve the functionality of your setup.**
 
 At the same Nord Keyboards page you can download the Windows Help File for the editor app. If you just click to download it, the file type is not recognized as binary data and just loads on the Browser window as garbled text. To save the file:
 
@@ -142,12 +144,12 @@ For me it was:
 
 Click 'ok' to close the editor. You should now have a launcher item for the editor on your start menu.
 
-## Other ideas and ToDos
+## Other ideas and todos
 
 * Find a way to get the editor app to start up automatically when the RPi starts up
 * Find a way to get WINE and the editor to work on VNC when the RPi doesn't have a screen attached
 
 ## Conclusion
 
-Good luck! I hope this article is useful. Remember you can post feedback or questions using the *Issues* tab at my [site's repository at Github](https://github.com/samesimilar/samesimilar.github.io/issues). 
+Good luck! I hope this article is useful. Remember you can post feedback or questions using the *Issues* tab at my site's [repository at Github](https://github.com/samesimilar/samesimilar.github.io/issues). 
 

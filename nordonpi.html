@@ -16,7 +16,7 @@
 	<p>I discovered that it worked quite well! So I wanted to share the steps for setting this up, in case it is useful to anyone else.</p>
 	<p>One important caveat right now is that if WINE will not start up properly if a display is not plugged into the HDMI-out port of the Raspberry Pi. This is unfortunate since the RPi OS includes VNC Server (remote desktop).  If I learn how to make this work in “headless” mode, then I will update this post. For now, VNC with WINE and the Nord Editor <em>does</em> work, but you need to always have a display plugged into the RPi anyway, reducing the usefulness of this solution.</p>
 	<p><em>Feedback</em></p>
-	<p>My website doesn’t host comments, so I invite you to post feedback or questions using the <em>Issues</em> tab at this <a href='https://github.com/samesimilar/samesimilar.github.io/issues'>site’s repository at Github</a>.</p>
+	<p>My website doesn’t host comments, so I invite you to post feedback or questions using the <em>Issues</em> tab at this sites’s <a href='https://github.com/samesimilar/samesimilar.github.io/issues'>repository at Github</a>.</p>
 	<p><img class='img-fluid' src='img/nordonpi_nordeditor.png' alt='The nord modular editor running on Raspberry Pi' /></p>
 	<h2>Hardware</h2>
 	<p>What you’ll need is:</p>
@@ -64,9 +64,9 @@
 	</ol>
 	<p>As of this writing you are looking for:
 		<code>wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash</code></p>
-	<ol>
+	<ul>
 		<li>Give it a few minutes to install Pi-Apps.  When it’s done it will say “Installation Complete” in the terminal window. You can close the terminal window.</li>
-	</ol>
+	</ul>
 	<p><img class='img-fluid' src='img/nordonpi_installingpiapps.png' alt='Installing pi-apps' /></p>
 	<h2>Start the Pi-Apps app and install Box86 and WINE (x86)</h2>
 	<p>You can find the Pi-Apps app on the RPi ‘start menu’ under <em>Accessories</em>.</p>
@@ -77,22 +77,23 @@
 		<li>Click Install.</li>
 	</ol>
 	<p>A terminal will open and some scripts will run for a few minutes. Wait until it says it is finished before installing WINE.</p>
-	<ol>
+	<ul>
 		<li>Once Box86 is installed, go back down the list of apps and click WINE (x86). Click <em>Install</em> for this one also.</li>
-	</ol>
+	</ul>
 	<p>This will take about an hour to install. You may see some error messages and stuff pop up while it installs, but I just ignored them and I bet you can too.</p>
 	<p><img class='img-fluid' src='img/nordonpi_installingwine.png' alt='Installing WINE' /></p>
 	<p><img class='img-fluid' src='img/nordonpi_winewait.png' alt='Waiting for the install to finish' /></p>
 	<h2>Download the Nord Modular Editor</h2>
 	<p>Ok we are mostly done now! Head over to the Nord Keyboards website at 	<a href='https://www.nordkeyboards.com/downloads/nord-modular'>https://www.nordkeyboards.com/downloads/nord-modular</a> to download the editor Windows editor (<em>Nord Modular Editor v3.03.zip</em>) to your RPi. Double-click the downloaded .zip file to open the archiver utility, and extract the .exe into a convenient location. I put mine in a <code>nord</code>  subfolder of the <code>Music</code> folder.</p>
 	<p>Now we are ready to run the editor. Plug in your USB MIDI interface and run the .exe by passing its path to the <code>wine</code> command on the terminal.</p>
-	<p>e.g. for me I would put the following command:</p>
+	<p>For example, I would put the following command:</p>
 	<p><code>wine "/home/samesimilar/Music/nord/Nord Modular Editor v3.03.exe"</code></p>
-	<p>Take care with upper- and lower-case and notice I put the path in quotes since the path/filename has spaces in it.</p>
-	<p>After a couple minutes of zen, the editor will finally start up, and you should be able to set it up as usual.</p>
+	<p>Take care with upper- and lower-case, and notice I enclosed the full path in quotes since the path/filename has spaces in it.</p>
+	<p>After a couple minutes of zen, (“a few moments later” as is said on Spongebob) the editor will finally start up, and you should be able to set up the MIDI connection and start patching, as usual.</p>
+	<p>For further assistance with the editor and its communication with your wonderful Nord Modular synthesizer, I’ll refer you to the classic <a href='https://www.nordkeyboards.com/sites/default/files/files/downloads/manuals/nord-modular/Nord%20Modular%20English%20User%20Manual%20v3.0%20Edition%203.0.pdf'>Nord Modular manual</a>.</p>
 	<p><img class='img-fluid' src='img/nordonpi_startingup.png' alt='Starting the editor' /></p>
-	<p><strong>Here are a few more optional steps to improve the usability of your setup:</strong></p>
 	<h2>Download the Windows Help File</h2>
+	<p><strong>This and the following steps are optional ideas to improve the functionality of your setup.</strong></p>
 	<p>At the same Nord Keyboards page you can download the Windows Help File for the editor app. If you just click to download it, the file type is not recognized as binary data and just loads on the Browser window as garbled text. To save the file:</p>
 	<ol>
 		<li>Right-click the link to the <em>Nord Modular v3.03 Helpfile</em> and select <em>Save link as…</em></li>
@@ -112,13 +113,13 @@
 	<p>For me it was:</p>
 	<p><code>wine "/home/samesimilar/Music/nord/Nord Modular Editor v3.03.exe"</code></p>
 	<p>Click ‘ok’ to close the editor. You should now have a launcher item for the editor on your start menu.</p>
-	<h2>Other ideas and ToDos</h2>
+	<h2>Other ideas and todos</h2>
 	<ul>
 		<li>Find a way to get the editor app to start up automatically when the RPi starts up</li>
 		<li>Find a way to get WINE and the editor to work on VNC when the RPi doesn’t have a screen attached</li>
 	</ul>
 	<h2>Conclusion</h2>
-	<p>Good luck! I hope this article is useful. Remember you can post feedback or questions using the <em>Issues</em> tab at my <a href='https://github.com/samesimilar/samesimilar.github.io/issues'>site’s repository at Github</a>.</p>
+	<p>Good luck! I hope this article is useful. Remember you can post feedback or questions using the <em>Issues</em> tab at my site’s <a href='https://github.com/samesimilar/samesimilar.github.io/issues'>repository at Github</a>.</p>
 
 </body>
 </html>
