@@ -11,7 +11,7 @@ One important caveat right now is that if WINE will not start up properly if a d
 
 *Feedback*
 
-My website doesn't host comments, so I invite you to post feedback or questions using the *Issues* tab at this sites's [repository at Github](https://github.com/samesimilar/samesimilar.github.io/issues).
+My website doesn't host comments, so I invite you to post feedback or questions using the *Issues* tab at this site's [repository at Github](https://github.com/samesimilar/samesimilar.github.io/issues).
 
 ![The nord modular editor running on Raspberry Pi](img/nordonpi_nordeditor.png)
 
@@ -31,7 +31,7 @@ The setup I am describing has been tested on *Raspberry Pi OS Bullseye*. The OS 
 
 Generally you will need a USB MIDI interface that doesn't require special drivers (i.e. it should be "USB class compliant"). That is to make it easy for the RPi OS to recognize it. I have tested an M-Audio UNO USB-MIDI cable, and my MOTU M4 audio interface (with MIDI ports), and both have been functional for this purpose.
 
-## TLDR; What you need to do
+## TL;DR What you need to do
 
 Here is a summary of the procedure in case you don't need the full description. The general idea is first to install [Pi-Apps](https://github.com/Botspot/pi-apps) on your RPi, which offers "one-click" installers for Box86 and WINE. Then you can download or copy the Nord Modular Editor for Windows onto your Pi and run it with the `wine` command.  
 
