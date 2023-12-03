@@ -123,7 +123,7 @@ At the same Nord Keyboards page you can download the Windows Help File for the e
 
 1. Right-click the link to the *Nord Modular v3.03 Helpfile* and select *Save link as...*
 2. Place the file in the same folder as the editor .exe file.
-3. The file has a slightly incorrect name as downloaded. Rename the help file to *Nord Modular v3.03.HLP*. You can rename files in the RPi file browser app.
+3. The file has a slightly incorrect name as downloaded. Rename the help file to *Nord Modular Editor v3.03.HLP*. You can rename files in the RPi file browser app.
 
 ## Download the Nord Modular patch archive
 
